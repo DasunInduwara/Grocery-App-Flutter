@@ -44,7 +44,10 @@ class _CartState extends State<Cart> {
                       cartBloc: cartBloc);
                 },
               );
-
+              case CartEmptyState:
+                return Center(
+                  child: Image.network("https://img.icons8.com/cotton/50/shopping-cart--v1.png"),
+                );
             default:
           }
 
