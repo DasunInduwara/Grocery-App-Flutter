@@ -19,13 +19,24 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     if (cartItems.isEmpty) {
       emit(CartEmptyState());
     } else {
-      emit(CartSuccessState(cartItems: cartItems));
+      double total = calculateTotal();
+
+      emit(CartSuccessState(cartItems: cartItems, totalPrice: total));
     }
   }
 
   FutureOr<void> cartRemoveFromCartEvent(
       CartRemoveFromCartEvent event, Emitter<CartState> emit) {
     cartItems.remove(event.dataModel);
-    emit(CartSuccessState(cartItems: cartItems));
+    double total = calculateTotal();
+    emit(CartSuccessState(cartItems: cartItems, totalPrice: total));
+  }
+
+  double calculateTotal() {
+    double total = 0.0;
+    for (var element in cartItems) {
+      total = total + element.price;
+    }
+    return total;
   }
 }

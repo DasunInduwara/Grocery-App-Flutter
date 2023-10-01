@@ -9,8 +9,9 @@ final class CartInitial extends CartState {}
 
 class CartSuccessState extends CartState {
   final List<ProductDataModel> cartItems;
+  final double totalPrice;
 
-  CartSuccessState({required this.cartItems});
+  CartSuccessState({required this.cartItems, required this.totalPrice});
 }
 
 class CartEmptyState extends CartState {}
